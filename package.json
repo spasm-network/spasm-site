@@ -1,0 +1,34 @@
+{
+  "name": "static-site-generator",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "description": "Generate static HTML from JSON",
+  "main": "generate.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "create:dist": "mkdir -p ./dist/media/icons/",
+    "copy:media-utils": "npm run create:dist && cp ./utils/media/* ./dist/media/ -r",
+    "copy:media-src": "npm run create:dist && cp ./src/media/* ./dist/media/ -r",
+    "copy:styles": "npm run create:dist && cp ./utils/css/styles.css ./dist/styles.css",
+    "copy:media": "npm run copy:media-utils && npm run copy:media-src",
+    "copy:all": "npm run copy:media && npm run copy:styles",
+    "generate": "node utils/scripts/generate.js",
+    "build": "npm run clean && npm run copy:all && npm run generate",
+    "dev": "clear && npm run build && npm run start:dev",
+    "prod": "clear && npm run build && npm run start:prod",
+    "start:dev": "http-server ./dist/ -p 3367",
+    "start:prod": "pm2 start ecosystem-prod.config.js",
+    "git-update": "git fetch && git reset --hard origin/master && git pull",
+    "delete-pm2-prod": "pm2 delete $(node -e 'const ecosystem = require(\"./ecosystem-prod.config.js\"); console.log(ecosystem.apps[0].name);' | tail -n 1)",
+    "restart-pm2-prod": "npm run delete-pm2-prod && npm run prod",
+    "git-update-and-restart": "npm run git-update && npm ci && npm run restart-pm2-prod",
+    "upgrade": "npm run git-update-and-restart",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "http-server": "14.1.1",
+    "marked": "18.0.5"
+  },
+  "keywords": [],
+  "author": ""
+}
