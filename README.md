@@ -23,17 +23,33 @@ nano src/data.json
 npm run prod
 ```
 
-### Options
+### Customize
+
+Copy your favicon.ico to `src/media/icons/favicon.ico`
+
+#### Options
+
+data.theme.name
+- `spasm`, `spasm-dark`, `darkvegas`, `greeny`, `neon`
 
 data.categories[0].width
 - `full` - display category in a full screen
+- `large`, `medium`, `small`
 
 data.items[0].width
 - `block` (default) - display item in a default block
 - `full` - display item in a full line
 
-data.categories[0].page.shoMainHero
+data.categories[0].page.showMainHero
 - `false` - hide main hero section
 
 data.categories[0].frontPage
 - `false` - hide category from home page
+
+data.categories[0].showPagePath
+- `false` - hide page path (`home/blog`)
+
+`data.items[0].summary` - is displayed on index, categories pages. It's also shown on the item page if description doesn't exist.
+`data.items[0].showSummaryAlways` - display summary even if description exists, e.g., on an item page.
+`data.items[0].description` - is displayed on item pages only.
+
