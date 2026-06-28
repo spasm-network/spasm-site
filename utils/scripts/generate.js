@@ -89,7 +89,7 @@ if (data.announcements && Array.isArray(data.announcements)) {
     data.announcements.forEach(ann => {
         const colorClass = `announcement-${ann.color || 'orange'}`;
         if (ann.link) {
-            announcementsHtml += `<a href="${ann.link}" class="announcement-box ${colorClass}">${ann.text}</a>`;
+            announcementsHtml += `<a href="${ann.link}" class="announcement-box ${colorClass}" ${ann.type === 'external' ? 'target="_blank"' : ''}>${ann.text}</a>`;
         } else {
             announcementsHtml += `<div class="announcement-box ${colorClass}">${ann.text}</div>`;
         }
@@ -134,15 +134,15 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
         const labels = item.labels || [];
         const labelsHtml = labels.map(label => `<span class="label">${label}</span>`).join('');
 
-        // --- Description Logic ---
-        let descriptionHtml = '';
-        if (Array.isArray(item.description)) {
-            descriptionHtml = item.description.map(line => `<p>${line}</p>`).join('');
-        } else if (typeof item.description === 'string') {
-            // descriptionHtml = `<p>${item.description}</p>`;
-            descriptionHtml = item.description ? marked.parse(item.description) : '';
+        // --- Summary Logic ---
+        let summaryHtml = '';
+        if (Array.isArray(item.summary)) {
+            summaryHtml = item.summary.map(line => `<p>${line}</p>`).join('');
+        } else if (typeof item.summary === 'string') {
+            // summaryHtml = `<p>${item.summary}</p>`;
+            summaryHtml = item.summary ? marked.parse(item.summary) : '';
         } else {
-            descriptionHtml = '';
+            summaryHtml = '';
         }
 
         // --- Score ---
@@ -170,7 +170,7 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
             }).join('');
         }
 
-        const itemTitleLink = item.title.toLowerCase()
+        const itemTitleLink = item.title?.toLowerCase()
             .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
             .replace(/---/g, '-').replace(/--/g, '-');
 
@@ -179,8 +179,8 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
                 <div class="card-header">
                     <a href="/${itemTitleLink}">
                         <div class="item-title">
-                            ${item.logo ? `<img src="${item.logo}" alt="${item.title}">` : ''}
-                            ${item.title}
+                            ${item.logo ? `<img src="${item.logo}">` : ''}
+                            ${item.title ?  item.title : ''}
                         </div>
                     </a>
                     <div class="labels-container">
@@ -192,7 +192,7 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
                     ${tagsHtml}
                 </div>
                 <div class="description">
-                    ${descriptionHtml}
+                    ${summaryHtml}
                 </div>
                 <div class="card-footer">
                     <span></span>
@@ -216,10 +216,14 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
         .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
         .replace(/---/g, '-').replace(/--/g, '-')
     const homeLink = ifCategoryPage ? '<a href="/">home </a>' : ''
+    let pagePathHtml = ''
+    if (cat.showPagePath !== false && cat.showPagePath !== "false") {
+      pagePathHtml = `<h2 class="section-title">${homeLink}/ <a href="${categoryPageName}">${categoryName}</a></h2>`
+    }
 
     return `
         <section id="${categoryName}" class="section-block width-${categoryWidth}">
-            <h2 class="section-title">${homeLink}/ <a href="${categoryPageName}">${categoryName}</a></h2>
+            ${pagePathHtml}
             <div class="products-grid">
                 ${cardsHtml}
             </div>
@@ -344,7 +348,7 @@ console.log(`✅ Generated single page: dist/index.html`);
 
 // --- Function to generate a single item page HTML --- //
 function generateItemPage(item) {
-    const slug = item.title.toLowerCase()
+    const slug = item.title?.toLowerCase()
         .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
         .replace(/---/g, '-').replace(/--/g, '-');
     const outputPath = path.join(OUTPUT_DIR, `${slug}.html`);
@@ -432,6 +436,11 @@ function generateItemPage(item) {
       mediaHtml = mediaHtmlArray.join('');
     }
 
+    // Summary
+    // let summaryHtml = item.summary || '';
+    // summaryHtml = summaryHtml.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+    let summaryHtml = item.summary ? marked.parse(item.summary) : '';
+
     // Description
     let descriptionHtml = '';
     if (Array.isArray(item.description)) {
@@ -444,10 +453,11 @@ function generateItemPage(item) {
     }
     // const descriptionHtml = item.description ? marked.parse(item.description) : '';
 
-    // Summary
-    // let summaryHtml = item.summary || '';
-    // summaryHtml = summaryHtml.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
-    const summaryHtml = item.summary ? marked.parse(item.summary) : '';
+    // Delete summary if description exists
+    if (
+      descriptionHtml && typeof(descriptionHtml) === "string" &&
+      item.showSummaryAlways !== true && item.showSummaryAlways !== "true"
+    ) { summaryHtml = ''; }
 
     // --- Extra Sections Logic ---
     let extraSectionsHtml = '';
@@ -507,8 +517,8 @@ function generateItemPage(item) {
         .replace('{{FOOTER_HTML}}', footerLinksHtml)
         .replace('{{ANNOUNCEMENTS_HTML}}', announcementsHtml)
         .replace('{{ITEM_LOGO}}', logoHtml)
-        .replace('{{ITEM_HEADER_META}}', headerMetaHtml) // Replaces the old separate labels/score
-        .replace('{{ITEM_ACTION_ROW}}', actionRowHtml)    // Replaces the old separate links/icons
+        .replace('{{ITEM_HEADER_META}}', headerMetaHtml)
+        .replace('{{ITEM_ACTION_ROW}}', actionRowHtml)
         .replace('{{ITEM_TAGS_HTML}}', tagsHtml)
         .replace('{{ITEM_MEDIA_HTML}}', mediaHtml)
         .replace('{{ITEM_DESCRIPTION_HTML}}', descriptionHtml)
