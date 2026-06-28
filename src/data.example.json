@@ -1,0 +1,406 @@
+{
+  "announcements": [
+    {
+      "text": "A very long default announcement without any colors because it's important to make sure that eveything works fine even with long strings."
+    },
+    {
+      "color": "green",
+      "text": "Success: all links have been updated!"
+    },
+    {
+      "color": "red",
+      "text": "Important: update your app!"
+    },
+    {
+      "color": "orange",
+      "text": "Participate in our annual survey &rarr;",
+      "type": "external",
+      "link": "https://forum.spasm.network"
+    },
+    {
+      "color": "blue",
+      "text": "Blog: Spasm Ecosystem Growth Initiative. &rarr;",
+      "link": "/spasm-ecosystem-growth-initiative"
+    }
+  ],
+  "theme": {
+    "name": "spasm-dark"
+  },
+  "meta": {
+    "title": "Spasm"
+  },
+  "hero": {
+    "pre-header": "Banned from slave tech? It's time to get uncensored!",
+    "header": "Welcome to Spasm",
+    "sub-header": "The endgame of social media"
+  },
+  "navbar": {
+    "brand": "spasm.network",
+    "navLinks": [
+      {
+        "text": "new",
+        "link": "/new"
+      },
+      {
+        "text": "blog",
+        "link": "/blog"
+      },
+      {
+        "text": "videos",
+        "link": "/videos"
+      },
+      {
+        "text": "podcast",
+        "link": "/podcast"
+      },
+      {
+        "text": "forum",
+        "link": "https://forum.spasm.network",
+        "type": "external"
+      },
+      {
+        "text": "contacts",
+        "link": "/contacts"
+      },
+      {
+        "icon": "media/icons/forgejo.svg",
+        "link": "https://git.spasm.network/spasm-network"
+      }
+    ]
+  },
+  "footer": {
+    "footerLinks": [
+      {
+        "icon": "media/icons/spasm.svg",
+        "text": "forum",
+        "link": "https://forum.spasm.network",
+        "type": "external"
+      },
+      {
+        "text": "contacts",
+        "link": "/contacts"
+      },
+      {
+        "icon": "media/icons/github.svg",
+        "link": "https://github.com/spasm-network"
+      },
+      {
+        "icon": "media/icons/codeberg.svg",
+        "link": "https://codeberg.org/spasm-network"
+      },
+      {
+        "icon": "media/icons/forgejo.svg",
+        "link": "https://git.spasm.network/spasm-network"
+      }
+    ]
+  },
+  "categories": [
+    {
+      "name": "new",
+      "width": "small",
+      "frontPage": false
+    },
+    {
+      "name": "apps",
+      "frontPage": true,
+      "frontPageView": "open",
+      "page": {
+        "showMainHero": true
+      }
+    },
+    {
+      "name": "tribes",
+      "frontPage": true
+    },
+    {
+      "name": "blog",
+      "width": "small",
+      "frontPage": false
+    },
+    {
+      "name": "videos",
+      "width": "small",
+      "frontPage": false
+    },
+    {
+      "name": "podcast",
+      "width": "small",
+      "frontPage": false
+    },
+    {
+      "name": "contacts",
+      "width": "small",
+      "frontPage": false,
+      "showPagePath": false
+    }
+  ],
+  "items": [
+    {
+      "title": "spasm-forum",
+      "score": 10,
+      "categories": ["apps"],
+      "logo": "media/icons/spasm.svg",
+      "labels": ["web"],
+      "tagsPros": ["agnostic", "decentralized"],
+      "tagsCons": ["js"],
+      "tags": ["no app"],
+      "year": "2021",
+      "description": ["The first Spasm-powered app.", "Supports multiple private keys, protocols, and networks."],
+      "summary": "A self-hosted Spasm-powered forum.",
+      "extra": [
+        {
+          "title": "Forum:",
+          "color": "blue",
+          "text": "Read related posts from our [forum](https://forum.spasm.network).",
+          "links": [
+            {
+              "title": "Spasm is the endgame of social media",
+              "link": "https://forum.spasm.network/news/spasmid0134451504987abd110f8e1",
+              "type": "external",
+              "color": "green",
+              "stats": {
+                "reply": 10,
+                "react": 20
+              }
+            },
+            {
+              "title": "Deploy Spasm in minutes with Docker/Podman or Ansible.",
+              "link": "https://forum.spasm.network/news/spasmid017b1e1639de46b122c1e4b",
+              "type": "external",
+              "color": "orange",
+              "stats": {
+                "reply": 20,
+                "react": 30
+              }
+            }
+          ]
+        },
+        {
+          "title": "Incidents:",
+          "color": "red",
+          "text": "2026-04-20 - nothing happened"
+        },
+        {
+          "title": "Warning:",
+          "color": "orange",
+          "text": "App updated."
+        },
+        {
+          "color": "green",
+          "text": "A Spasm-powered forum supports:\n- [networks](https://docs.spasm.network):\n  - Spasm\n  - Nostr\n    - Nostr relay1\n    - Nostr relay2\n\nMore networks will be added in the future."
+        },
+        {
+          "color": "blue",
+          "title": "Changes:",
+          "text": "New design is [live](https://forum.spasm.network).\nCheck an [admin panel](https://forum.spasm.network/admin) to change themes."
+        }
+      ],
+      "links": {
+        "website": "https://spasm.network",
+        "onion": "http://abcdef.onion/",
+        "i2p": "http://12345.b32.i2p/",
+        "discuss": "https://forum.spasm.network"
+      },
+      "footerIcons": ["spasm", "nostr", "monero", "zcash", "ethereum", "bitcoin", "lightning", "solana"]
+    },
+    {
+      "title": "spasm-site",
+      "score": 8,
+      "categories": ["apps"],
+      "logo": "media/icons/spasm-white.svg",
+      "labels": ["web", "ssg"],
+      "tagsPros": ["nojs"],
+      "tagsCons": ["no comments"],
+      "tags": ["static"],
+      "year": "2026",
+      "description": "Generate **nojs** pages for a directory, blog, podcast, videos.\n\nLearn more about [Spasm](https://spasm.network/learn)",
+      "links": ["https://spasm.network/"],
+      "footerIcons": ["spasm"]
+    },
+    {
+      "logo": "media/icons/spasm.svg",
+      "title": "Spasm is the endgame of social media",
+      "width": "full",
+      "categories": ["videos", "blog", "new"],
+      "labels": ["spasm", "web"],
+      "summary": "In the latest video, we compare Spasm against other decentralized social media solutions to prove why it represents the most advanced generation with superior agnostic architecture that cements its status as the endgame of social media.",
+      "description": "In the latest video, we compare Spasm against other decentralized social media solutions to prove why it represents the most advanced generation with superior agnostic architecture that cements its status as the endgame of social media.\n\nIf you're sick of slave tech's walled gardens, obsolete tech, and closed ecosystems, then welcome to Spasm - the true land of the free.\n\nYou can find your [tribe](https://spasm.network/tribes) or unplug your community from slave tech by [launching](https://spasm.network/run) your own Spasm instance in minutes with Docker/Podman or a single script, which handles complete server setup, necessary hardening, and enables auto-updates, so you won't have to worry about server maintenance. Additionally, you will qualify for a fat airdrop for running an instance in accordance with the [ecosystem growth initiative](https://forum.spasm.network/news/spasmid014a93c8cdae1d241329ce59d6f3c7a1ea160e320e267af3f05d9690f84edb1864).\n\nYou can also integrate Spasm into your project using the [npm package](https://www.npmjs.com/package/spasm.js), which includes many useful utils to simplify the development process.\n\nUnable to run a Spasm instance? Share this post with your tech-savvy friend or [fund the resistance](https://docs.spasm.network/donate). Spasm has been in development for half a decade without any VC money, grants, or other external funding, so any amount will help grow the ecosystem.\n\nAlternatively, you can support the ecosystem by scooping up some SPASM from [Uniswap](https://app.uniswap.org/explore/tokens/ethereum/0x33333470b917fe3e669e1646b96990aa369e3333).\n\nSpasm equips you with the best cypherpunk tools to escape walled gardens and reclaim your right to the freedoms of association and speech.\n\nJoin the resistance at [spasm.network](https://forum.spasm.network)",
+      "media": [
+        {
+          "link": "https://media.spasm.network/spasmvi0144d7fd63eba772dba8e313745aaff9668a25da41bc1ee1c7f7270cfa917cfdbc.mp4"
+        }
+      ],
+      "links": {
+        "discuss": "https://forum.spasm.network/news/spasmid0134451504987abd110f8e1"
+      },
+      "footerIcons": ["spasm", "ethereum"]
+    },
+    {
+      "logo": "media/icons/spasm.svg",
+      "title": "Operation Fuck Slave Tech: Join the Resistance",
+      "width": "full",
+      "categories": ["videos"],
+      "labels": ["spasm", "web"],
+      "summary": "We're starting a massive push for adoption. The operation is codenamed \"Fuck slave tech\". This is a crucial moment for freedom tech, so we need your help more than ever.",
+      "description": "Regulators continue tightening their grip on slave tech platforms, imposing dystopian rules far beyond anything we could have imagined during the covid-era crackdowns on our freedoms. While most law-abiding tax-paying slaves will comply with all sorts of restrictions, including full KYC and other age verification bullshit, a lot of free minds will be leaving slave tech's walled gardens soon. Thus, we must ensure that Spasm is ready to receive them, otherwise people will flock to outdated closed ecosystems like Mastodon, Farcaster, Lens, Bluesky, etc.\n\nAll the core pieces are in place: we now have a reworked web admin panel to make administration of Spasm instances very easy, a Docker/Podman deployment that takes just a few minutes to launch, and an automated one-script full server setup with Ansible that runs autonomously without human intervention.\n\nIn other words, deploying Spasm is now a \"one-click-and-forget\" experience. Additionally, running an instance qualifies you for a [fat airdrop](https://forum.spasm.network/news/spasmid014a93c8cdae1d241329ce5).\n\nLaunch Spasm under three minutes with Docker/Podman:\n\n[Forgejo](https://git.spasm.network/spasm-network/spasm-docker) [Codeberg](https://codeberg.org/spasm-network/spasm-docker) [Github](https://github.com/spasm-network/spasm-docker)\n\nDeploy Spasm on a new VPS with one script:\n\n[Forgejo](https://git.spasm.network/spasm-network/spasm-ansible) [Codeberg](https://codeberg.org/spasm-network/spasm-ansible) [Github](https://github.com/spasm-network/spasm-ansible)\n\n![image](https://media.spasm.network/spasmim0155702e8de9c7de5a1cae82cf5f782842654f52424342a8a4b8d87991d629a19e.jpeg)\n\n### Fuck slave tech\n\nWe're starting a massive push for adoption. The operation is codenamed \"Fuck slave tech\". This is a crucial moment for freedom tech, so we need your help more than ever.\n\nUnable to run a Spasm instance? Share this post with your tech-savvy friend or fund the resistance.\n\nSpasm has been in development for half a decade without any VC money, grants, or other external funding, so any amount will help grow the ecosystem.\n\n```\n\nBTC: bc1ql42pcl509k5qzzdty8hlx8ul2d54d9h24mfnsg\n\nETH: 0xF5b56722Aa3347c2b7A333Ae781Ea42CF966B941\n\nSOL: FyQJfREE3HyMhC7eiUebyJ4SLW52Tf5ww3Lo63oAtMF6\n\nXMR: 87n1PSRxE52KZXRypNsq1tbAK2jHy1kBAcHLS437Yhuj3WHaboCPWuGNTk4Lvh1j6x23gN7tN7rpDanVTNu6Y5NM98nfif3\n\n```\n\nAlternatively, you can support the ecosystem by scooping up some SPASM from [Uniswap](https://app.uniswap.org/explore/tokens/ethereum/0x33333470b917fe3e669e1646b96990aa369e3333).\n\nWe also have new instances joining the network recently, so [find your tribe](https://spasm.network/tribes) and unplug yourself from slave tech.\n\nSpasm equips you with the best cypherpunk tools to escape walled gardens and reclaim your right to the freedoms of association and speech.\n\nJoin the resistance at [spasm.network](https://spasm.network)",
+      "media": [
+        {
+          "link": "https://media.spasm.network/spasmvi01e2729a96813336a92a2f511c4770c7935c95ab44e8cbb94b1d38912c0f1db14f.mp4"
+        }
+      ],
+      "links": {
+        "discuss": "https://forum.spasm.network/news/spasmid017b1e1639de46b122c1e4b"
+      },
+      "footerIcons": ["spasm", "ethereum"]
+    },
+    {
+      "logo": "media/icons/spasm.svg",
+      "title": "Spasm Ecosystem Growth Initiative",
+      "width": "full",
+      "categories": ["blog"],
+      "labels": ["spasm", "web"],
+      "summary": "We're starting a massive push for adoption. The operation is codenamed \"Fuck slave tech\". This is a crucial moment for freedom tech, so we need your help more than ever.",
+      "description": "The Spasm incentive program aims to foster ecosystem expansion and distribute SPASM tokens among degens and cypherpunks.\n\nIn the first round, 10% of the total SPASM supply is up for grabs, rewarding the next 72 communities to join the future of social media.\n\nThe first eight communities get 0.4% of SPASM each, the next eight get 0.3%, then 0.2%, and 0.1%. Finally, forty more communities will receive 0.05% each.\n\nTokens are vested to prevent a quick sell-off. A community can run multiple forums, but it will only qualify for one airdrop to prevent Sybil attacks.\n\nIf you run an instance without a community or you have a large community wanting to get better allocation, hit us up on Session to talk.\n\nIf you're a developer, researcher, cypherpunk or a freedom seeker, join us on Spasm or Session. Let's talk.\n\n---\n\n### Let there be SPASM!\n\n**0x33333470b917fe3e669e1646b96990aa369e3333**\n\n[Website](https://spasm.network) [Etherscan](https://etherscan.io/token/0x33333470b917fe3e669e1646b96990aa369e3333) [Uniswap](https://app.uniswap.org/explore/tokens/ethereum/0x33333470b917fe3e669e1646b96990aa369e3333)",
+      "media": [
+        {
+          "link": "https://media.spasm.network/spasmim01568d030e9bb928babf60918f1dffe0f94cafd0e34af5d611087d3ac2a4930df3.jpeg"
+        }
+      ],
+      "links": {
+        "discuss": "https://forum.spasm.network/news/spasmid014a93c8cdae1d241329ce5"
+      },
+      "footerIcons": ["spasm", "ethereum"]
+    },
+    {
+      "title": "The Uniswap tragedy of fucking up a perfect legacy",
+      "width": "full",
+      "categories": ["podcast"],
+      "labels": ["dark vegas tales"],
+      "media": [
+        {
+          "link": "https://media.spasm.network/spasmau0153536ce6e413b1bfb4b0fae4bb8053ca13768ae324d90b682d51909bae5681ea.mp3"
+        }
+      ],
+      "summary": "Each Uniswap protocol is a masterpiece of its time, but Uniswap Labs chose to operate in the most hostile jurisdiction and rely on a centralized infrastructure to run its frontend, which geo-blocks users by IP addresses and employs blockchain surveillance services like BlockAid that operate on a presumption of guilt.",
+      "showSummaryAlways": true,
+      "description": "Uniswap also uses restrictive Business Source License that legitimizes the bullshit system, which is based on coercion, censorship, law enforcement, absurd concepts like \"intellectual property\", and it gives more power to the state to decide what information can be shared. Besides, Uniswap enforces anti-free speech laws across the world on behalf of one nation state government.\n\n In 2020, Uniswap Labs panicked during the SushiSwap vampire attack and printed an unnecessary, inflationary governance token to keep liquidity from fleeing. Predictably, UNI lost 90% from its all-time high during a 2021 altcoin season pump. Only now, five years later, UNI is trying to fix its tokenomics with a burn mechanism to appease bagholders.\n\nTo its credit, Uniswap fixed a few issues shortly after the original podcast episode made waves across the crypto space. For example, Uniswap unbanned DPI and many other tokens and removed the \"impersonator\" flag from the SPASM token.\n\nTo learn more about the grim state of web3 and how VC-backed compliant companies are leeching on the Ethereum ecosystem, you can listen to the full episode of Dark Vegas Tales #1: Ethereum runs on slave tech.\n\nAnd don't be a compliant slave, subscribe with your podcast app using this RSS feed.\n\nDark Vegas Tales on Spasm, Nostr, and IPFS: darkvegas.eth",
+      "extra": [
+        {
+          "title": "Forum:",
+          "links": [
+            {
+              "title": "Dark Vegas Tales: the Uniswap tragedy of fucking up a perfect legacy",
+              "type": "external",
+              "link": "https://forum.spasm.network/news/spasmid010de2d543348a2960a0bba"
+            }
+          ]
+        }
+      ],
+      "links": { "discuss": "https://forum.spasm.network/news/spasmid010de2d543348a2960a0bba"}
+    },
+    {
+      "title": "spasm.network",
+      "categories": ["tribes"],
+      "logo": "media/icons/spasm.svg",
+      "labels": ["forum"],
+      "tagsPros": ["spasm"],
+      "year": "2025",
+      "summary": "This is where the Spasm community comes together to discuss everything about the ecosystem.",
+      "links": { "website": "https://forum.spasm.network" },
+      "footerIcons": ["spasm", "nostr", "ethereum"]
+    },
+    {
+      "title": "dark.vegas",
+      "categories": ["tribes"],
+      "logo": "media/icons/darkvegas.svg",
+      "labels": ["forum"],
+      "tagsPros": ["privacy", "cypherpunk", "lunarpunk", "tech", "crypto"],
+      "year": "2023",
+      "summary": "Welcome to the dark side! This is a space where lunarpunks come to talk about privacy tech, crypto, and other stuff.",
+      "links": { "website": "https://dark.vegas" },
+      "footerIcons": ["spasm", "nostr", "monero", "zcash", "ethereum", "bitcoin"]
+    },
+    {
+      "title": "zkpunks.dev",
+      "categories": ["tribes"],
+      "logo": "media/icons/pirate.svg",
+      "labels": ["forum"],
+      "tagsPros": ["zk", "privacy", "tech", "crypto"],
+      "year": "2025",
+      "summary": "Extremely based zk community.",
+      "links": { "website": "https://zkpunks.dev" },
+      "footerIcons": ["spasm", "nostr", "monero", "zcash", "ethereum", "bitcoin"]
+    },
+    {
+      "title": "decentralizedscience.org",
+      "categories": ["tribes"],
+      "logo": "media/icons/research.svg",
+      "labels": ["forum"],
+      "tagsPros": ["desci", "lunar", "privacy", "tech", "ethereum"],
+      "year": "2026",
+      "summary": "Lunar DeSci project built on cypherpunk principles that leverage decentralized technologies to ensure anonymity, transparency, and censorship resistance.",
+      "links": { "website": "https://forum.decentralizedscience.org" },
+      "footerIcons": ["ethereum", "monero", "zcash"]
+    },
+    {
+      "title": "warptoad.org",
+      "categories": ["tribes"],
+      "logo": "media/icons/warptoad.svg",
+      "labels": ["forum"],
+      "tagsPros": ["zk", "privacy", "tech", "ethereum"],
+      "year": "2026",
+      "summary": "Warptoad is a private cross-chain token standard that provides a unified anonymity set across EVM chains.",
+      "links": { "website": "https://forum.warptoad.org" },
+      "footerIcons": ["ethereum"]
+    },
+    {
+      "title": "unblockedprofile.com",
+      "categories": ["tribes"],
+      "logo": "media/icons/ethereum.svg",
+      "labels": ["forum"],
+      "tagsPros": ["spasm", "ens", "ipfs", "ethereum"],
+      "year": "2026",
+      "summary": "D-web profile template system.",
+      "links": { "website": "https://forum.unblockedprofile.com" },
+      "footerIcons": ["ethereum"]
+    },
+    {
+      "title": "eth-ub.net",
+      "categories": ["tribes"],
+      "logo": "media/icons/music.svg",
+      "labels": ["forum"],
+      "tagsPros": ["music", "spasm", "ens", "ipfs", "ethereum"],
+      "year": "2026",
+      "summary": "Decentralized music.",
+      "links": { "website": "https://ubnet2.eth-ub.net" },
+      "footerIcons": ["ethereum"]
+    },
+    {
+      "title": "monero.top",
+      "categories": ["tribes"],
+      "logo": "media/icons/monero.svg",
+      "labels": ["forum"],
+      "tagsPros": ["monero", "privacy"],
+      "year": "2024",
+      "summary": "This is the hub for the Monero (XMR) community to keep tabs on the latest Monero news and updates.",
+      "links": { "website": "https://monero.top" },
+      "footerIcons": ["monero"]
+    },
+    {
+      "title": "degenrocket.space",
+      "categories": ["tribes"],
+      "logo": "media/icons/rocket.svg",
+      "labels": ["forum"],
+      "tagsPros": ["defi", "nft", "tech", "crypto"],
+      "year": "2021",
+      "summary": "Join the degen tribe. As the first Spasm instance, active since 2021, this community curates news from many RSS sources, keeping the tribe informed and engaged with the latest DeFi, NFT, privacy, and libertarian news.",
+      "links": { "website": "https://degenrocket.space" },
+      "footerIcons": ["spasm", "nostr", "monero", "zcash", "ethereum", "bitcoin", "lightning", "solana"]
+    },
+    {
+      "categories": ["contacts"],
+      "width": "full",
+      "summary": "## Contacts\n\n[Session](https://getsession.org/): **degenrocket**\n\nNostr: [web](https://primal.net/p/npub1kwnsd0xwkw03j0d92088vf2a66a9kztsq8ywlp0lrwfwn9yffjqspcmr0z) / [default app](nostr:npub1kwnsd0xwkw03j0d92088vf2a66a9kztsq8ywlp0lrwfwn9yffjqspcmr0z)"
+    }
+  ]
+}
