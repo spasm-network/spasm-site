@@ -60,12 +60,21 @@
   --colorScoreLow-dark: var(--colorThirdly-dark);
 }
 
-body#theme-pink {
+body#theme-pink, body#theme-spasm {
   --colorPrimary-light: #f420af;
   --colorPrimary-dark: #f420af;
 }
 
-body#theme-red {
+body#theme-pink-dark, body#theme-spasm-dark {
+  --colorPrimary-light: #f420af;
+  --colorPrimary-dark: #f420af;
+  --bgBase-light: #f6f5f4;
+  --bgBase-dark: #000000;
+  --bgSecondary-light: #eeeeee;
+  --bgSecondary-dark: #080808;
+}
+
+body#theme-red, body#theme-darkvegas {
   --colorPrimary-light: #ff0000;
   --colorPrimary-dark: #ff0000;
   --bgBase-light: #f6f5f4;
@@ -96,7 +105,7 @@ body#theme-neon {
   --bgSecondary-dark: #080808;
 }
 
-body#theme-green {
+body#theme-green, body#theme-greeny {
   --colorPrimary-light: #e5c46b;
   --colorPrimary-dark: #e5c46b;
   --colorNotImportant-light: #4fb848;
