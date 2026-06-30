@@ -148,6 +148,7 @@ body {
   --colorScoreHigh: var(--colorScoreHigh-dark);
   --colorScoreAverage: var(--colorScoreAverage-dark);
   --colorScoreLow: var(--colorScoreLow-dark);
+  --colorWarning: var(--colorRed);
 }
 
 #theme-switch {
@@ -181,6 +182,7 @@ body:has(#theme-switch:checked) {
   --colorBase: var(--colorBase-light);
   --colorPrimary: var(--colorPrimary-light);
   --colorSecondary: var(--colorSecondary-light);
+  --colorThirdly: var(--colorThirdly-light);
   --colorHover: var(--colorHover-light);
   --colorNotImportant: var(--colorNotImportant-light);
   --colorGreen: var(--colorGreen-light);
@@ -189,6 +191,7 @@ body:has(#theme-switch:checked) {
   --colorBlue: var(--colorBlue-light);
   --bgBase: var(--bgBase-light);
   --bgSecondary: var(--bgSecondary-light);
+  --bgThirdly: var(--bgThirdly-light);
   --bgHover: var(--bgHover-light);
   --bgDark: var(--bgDark-light);
   --borderColor: var(--borderColor-light);
@@ -619,12 +622,16 @@ body {
 }
 /* .announcement-box:hover { background: rgba(255, 102, 0, 0.1); } */
 .announcement-box:hover { background: color-mix(in srgb, var(--colorOrange) 10%, transparent); }
+.announcement-warning { border-color: var(--colorWarning); color: var(--colorWarning); }
+.announcement-warning:hover { background: color-mix(in srgb, var(--colorWarning) 10%, transparent); }
 .announcement-green { border-color: var(--colorGreen); color: var(--colorGreen); }
 .announcement-green:hover { background: color-mix(in srgb, var(--colorGreen) 10%, transparent); }
 .announcement-red { border-color: var(--colorRed); color: var(--colorRed); }
 .announcement-red:hover { background: color-mix(in srgb, var(--colorRed) 10%, transparent); }
 .announcement-blue { border-color: var(--colorBlue); color: var(--colorBlue); }
 .announcement-blue:hover { background: color-mix(in srgb, var(--colorBlue) 10%, transparent); }
+.announcement-orange { border-color: var(--colorOrange); color: var(--colorOrange); }
+.announcement-orange:hover { background: color-mix(in srgb, var(--colorOrange) 10%, transparent); }
 
 /* --- ITEM PAGE SPECIFIC STYLES --- */
 .item-page {
@@ -800,7 +807,18 @@ body {
     line-height: 1.6;
 }
 
+.item-extra-link-stats {
+    color: var(--colorSecondary);
+}
+
 /* Dynamic Colors */
+.item-extra-warning .item-extra-title { color: var(--colorWarning); }
+.item-extra-link-warning { color: var(--colorWarning); }
+.item-extra-warning {
+  border-color: var(--colorWarning);
+  background: color-mix(in srgb, var(--colorWarning) 5%, transparent);
+}
+
 .item-extra-red .item-extra-title { color: var(--colorRed); }
 .item-extra-link-red { color: var(--colorRed); }
 .item-extra-red {
@@ -879,12 +897,15 @@ body {
 .item-summary h4, .item-summary h5, .item-summary h6 {
   margin-bottom: 10px;
 }
-.description pre, .item-description pre, .summary pre, .summary pre {
+.description pre, .item-description pre, .summary pre, .item-summary pre, .item-extra-text pre {
   overflow: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: var(--bgSecondary);
   padding: 2px 10px 15px;
+}
+.description pre {
+  background-color: var(--bgThirdly);
 }
 
 .media-download {
