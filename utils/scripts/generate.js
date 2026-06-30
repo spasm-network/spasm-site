@@ -389,9 +389,12 @@ function generateItemPage(item) {
     if (item.links?.i2p) links.push({ text: 'I2P', href: item.links?.i2p, isExternal: true });
     if (item.links?.discuss) links.push({ text: 'Discuss', href: item.links?.discuss, isExternal: true });
     
-    const linkButtonsHtml = links.map(l => 
-        `<a href="${l.href}" class="visit-link" ${l.isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>${l.text} &rarr;</a>`
-    ).join('');
+    let linkButtonsHtml = ''
+    if (links.length > 0) {
+      linkButtonsHtml = links.map(l => 
+          `<a href="${l.href}" class="visit-link" ${l.isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>${l.text} &rarr;</a>`
+      ).join('');
+    }
 
     // Footer Icons
     const footerIcons = item.footerIcons || [];
@@ -403,19 +406,35 @@ function generateItemPage(item) {
     }
 
     // Combined Links & Icons HTML
-    const actionRowHtml = `
+    let actionRowHtml = ''
+    if (linkButtonsHtml || footerIconsHtml) {
+      actionRowHtml = `
         <div class="item-action-row">
             ${linkButtonsHtml}
             ${footerIconsHtml ? `<div class="item-footer-icons">${footerIconsHtml}</div>` : ''}
         </div>
-    `;
+      `;
+    }
+    const itemActionSectionHtml = actionRowHtml ? `
+            <section class="item-action-row-container">
+                ${actionRowHtml}
+            </section>
+    ` : '';
 
     // Tags
     const tagsPros = (item.tagsPros || []).map(t => `<span class="tag-orange">${t}</span>`).join('');
     const tagsCons = (item.tagsCons || []).map(t => `<span class="tag-brown">${t}</span>`).join('');
     const tagsNormal = (item.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
     const yearHtml = item.year ? `<span class="tag">${item.year}</span>` : "";
-    const tagsHtml = tagsPros + tagsCons + tagsNormal + yearHtml;
+    let itemTagsHtml = '';
+    if (tagsPros || tagsCons || tagsNormal || yearHtml) {
+      itemTagsHtml = tagsPros + tagsCons + tagsNormal + yearHtml;
+    }
+    const itemTagsSectionHtml = itemTagsHtml ? `
+            <section class="item-tags">
+                ${itemTagsHtml}
+            </section>
+    ` : '';
 
     // Media
     let mediaHtml = '';
@@ -435,6 +454,11 @@ function generateItemPage(item) {
       });
       mediaHtml = mediaHtmlArray.join('');
     }
+    const mediaSectionHtml = mediaHtml ? `
+            <section class="item-media">
+              ${mediaHtml}
+            </section>
+    ` : ''
 
     // Summary
     // let summaryHtml = item.summary || '';
@@ -459,6 +483,12 @@ function generateItemPage(item) {
       item.showSummaryAlways !== true && item.showSummaryAlways !== "true"
     ) { summaryHtml = ''; }
 
+    const summarySectionHtml = summaryHtml ? `
+            <section class="item-summary">
+              ${summaryHtml}
+            </section>
+    ` : ''
+
     // --- Extra Sections Logic ---
     let extraSectionsHtml = '';
     if (Array.isArray(item.extra)) {
@@ -473,20 +503,24 @@ function generateItemPage(item) {
             if (section.links && Array.isArray(section.links)) {
               let linksHtmlArray = [];
               section.links.forEach(item => {
-                let linkStatsString = ''
+                // stats
+                let linkStatsStringHtml = ''
                 if (item.stats?.reply) {
                   const replyCount = Number(item.stats.reply);
                   if (typeof(replyCount) === "number" && replyCount) {
                     const step = 10;
                     if (replyCount >9) {
                       const bucket = Math.floor((replyCount) / step) * step;
-                      linkStatsString = ` (${bucket}+ comments)`;
+                      linkStatsStringHtml =
+                        `<span class="item-extra-link-stats"> (${bucket}+ comments)</span>`;
                     }
 
                   }
                 }
                 const linkColorClass = item.color ? `item-extra-link-${item.color}` : '';
-                const linkHtml = `<p><span class="${linkColorClass}"><a href="${item.link.toLowerCase()}" ${item.type === 'external' ? 'target="_blank"' : ''}>${item.title}</a></span><span>${linkStatsString}</span></p>`;
+                const itemTitleHtml = item.title ? `<span>${item.title}</span>` : '';
+                const itemTextHtml = item.text ? `<span> ${item.text}</span>` : '';
+                const linkHtml = `<p><span class="${linkColorClass}"><a href="${item.link.toLowerCase()}" ${item.type !== 'internal' ? 'target="_blank"' : ''}>${itemTitleHtml}</a></span>${linkStatsStringHtml}${itemTextHtml}</p>`;
                 linksHtmlArray.push(linkHtml);
               })
               linksHtml = linksHtmlArray.join("");
@@ -497,8 +531,8 @@ function generateItemPage(item) {
             
             extraSectionsHtml += `
                 <section class="item-extra-section ${colorClass}">
-                    ${title}
-                    <div class="item-extra-text">${textHtml}</div>
+                    ${title ? title : ''}
+                    ${textHtml ? `<div class="item-extra-text">${textHtml}</div>` : ''}
                     ${linksHtml ? `<div class="item-extra-links">${linksHtml}</div>` : ''}
                 </section>
             `;
@@ -518,11 +552,11 @@ function generateItemPage(item) {
         .replace('{{ANNOUNCEMENTS_HTML}}', announcementsHtml)
         .replace('{{ITEM_LOGO}}', logoHtml)
         .replace('{{ITEM_HEADER_META}}', headerMetaHtml)
-        .replace('{{ITEM_ACTION_ROW}}', actionRowHtml)
-        .replace('{{ITEM_TAGS_HTML}}', tagsHtml)
-        .replace('{{ITEM_MEDIA_HTML}}', mediaHtml)
+        .replace('{{ITEM_ACTION_SECTION_HTML}}', itemActionSectionHtml)
+        .replace('{{ITEM_TAGS_SECTION_HTML}}', itemTagsSectionHtml)
+        .replace('{{ITEM_MEDIA_HTML}}', mediaSectionHtml)
         .replace('{{ITEM_DESCRIPTION_HTML}}', descriptionHtml)
-        .replace('{{ITEM_SUMMARY_HTML}}', summaryHtml)
+        .replace('{{ITEM_SUMMARY_HTML}}', summarySectionHtml)
         .replace('{{ITEM_EXTRA_HTML}}', extraSectionsHtml);
 
     // Write file
