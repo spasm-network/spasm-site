@@ -126,12 +126,6 @@
       "name": "podcast",
       "width": "small",
       "frontPage": false
-    },
-    {
-      "name": "contacts",
-      "width": "small",
-      "frontPage": false,
-      "showPagePath": false
     }
   ],
   "items": [
@@ -274,6 +268,7 @@
     {
       "title": "The Uniswap tragedy of fucking up a perfect legacy",
       "width": "full",
+      "logo": "media/icons/darkvegas.svg",
       "categories": ["podcast"],
       "labels": ["dark vegas tales"],
       "media": [
@@ -398,9 +393,16 @@
       "footerIcons": ["spasm", "nostr", "monero", "zcash", "ethereum", "bitcoin", "lightning", "solana"]
     },
     {
-      "categories": ["contacts"],
+      "title": "Contacts",
       "width": "full",
-      "summary": "## Contacts\n\n[Session](https://getsession.org/): **degenrocket**\n\nNostr: [web](https://primal.net/p/npub1kwnsd0xwkw03j0d92088vf2a66a9kztsq8ywlp0lrwfwn9yffjqspcmr0z) / [default app](nostr:npub1kwnsd0xwkw03j0d92088vf2a66a9kztsq8ywlp0lrwfwn9yffjqspcmr0z)"
+      "frontPage": false,
+      "showPagePath": false,
+      "summary": "[Session](https://getsession.org/): **degenrocket**\n\nNostr: [web](https://primal.net/p/npub1kwnsd0xwkw03j0d92088vf2a66a9kztsq8ywlp0lrwfwn9yffjqspcmr0z) / [default app](nostr:npub1kwnsd0xwkw03j0d92088vf2a66a9kztsq8ywlp0lrwfwn9yffjqspcmr0z)",
+      "extra": [
+        {
+          "text": "```\n\n-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nxjMEXp05whYJKwYBBAHaRw8BAQdAx4t0Zss1dqJlUKrbc5vMtI/N0ZYMqGABycOo\nK5MmuS3NJ2RlZ2Vucm9ja2V0IDxub3JlcGx5QGRlZ2Vucm9ja2V0LnNwYWNlPsKT\nBBMWCgA7FiEEDeoXQ6Z0LyXPg6TlGYlkIfSunqQFAmRElR4CGwMFCwkIBwICIgIG\nFQoJCAsCBBYCAwECHgcCF4AACgkQGYlkIfSunqSXeAD/cCGucrS/I9a5FWwtGgyi\n9C0QY18Wse0GIjHUgOxs5jkBAIRoNnU6wAh329op0/VptejE4F9SRr/gRUg/Sdby\nKhgNzjgEXp05whIKKwYBBAGXVQEFAQEHQFX/f0HlPq58KeBCNU2pkFke5/IBHd7L\n+xzqr51t4qpFAwEIB8LAAwQYFgoAdQWCXp05wgkQGYlkIfSunqRHFAAAAAAAHgAg\nc2FsdEBub3RhdGlvbnMuc2VxdW9pYS1wZ3Aub3JnFD4GH7+GP3AQktWn+fSb4kDu\nNECnUre7x16Nk9PzSfYCmwgCHgEWIQQN6hdDpnQvJc+DpOUZiWQh9K6epAAASxwB\nAK58/AXXh35J/bWBlyfo+f9Co5lbCSur6p1N/OMnTM5YAQCxNhvV3CpqJHGPd5W6\nqobN+IABW1eTv2x3XPvimoPfCg==\n=4Z0o\n-----END PGP PUBLIC KEY BLOCK-----\n\n```"
+        }
+      ]
     }
   ]
 }
