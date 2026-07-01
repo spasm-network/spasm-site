@@ -14,13 +14,20 @@ npm ci
 
 ```bash
 cp src/data.example.json src/data.json
-nano src/data.json
+vim src/data.json
 ```
 
 ### Run
 
 ```bash
 npm run prod
+```
+
+Default port is 3366, you can change it via `.env` file:
+
+```bash
+cp .env.example .env
+vim .env
 ```
 
 ### Customize
