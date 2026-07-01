@@ -204,6 +204,7 @@ body {
     background-color: var(--bgBase);
     color: var(--colorBase);
     line-height: 1.5;
+    overflow-wrap: break-word;
 }
 .navbar {
     font-family: var(--font-mono);
@@ -423,7 +424,7 @@ body {
     align-items: center; 
     gap: 8px; 
     flex: 1; 
-    /* overflow-wrap: break-word; */
+    overflow-wrap: anywhere;
 }
 .item-title img { height: 24px; width: auto; }
 
@@ -641,6 +642,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    /* overflow: auto; */
+    overflow-wrap: break-word;
 }
 
 /* Header */

@@ -180,7 +180,7 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
                     <a href="/${itemTitleLink}">
                         <div class="item-title">
                             ${item.logo ? `<img src="${item.logo}">` : ''}
-                            ${item.title ?  item.title : ''}
+                            ${item.title ? `<span>${item.title}</span>` : ''}
                         </div>
                     </a>
                     <div class="labels-container">
