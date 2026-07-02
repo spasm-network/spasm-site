@@ -13,8 +13,8 @@ npm ci
 ### Customize
 
 ```bash
-cp src/data.example.json src/data.json
-vim src/data.json
+cp data.example.json data.json
+vim data.json
 ```
 
 ### Run
@@ -30,22 +30,34 @@ cp .env.example .env
 vim .env
 ```
 
+### Development
+
+```bash
+# Test at localhost:3367
+npm run dev
+```
+
 ### Customize
 
-Copy your favicon.ico to `src/media/icons/favicon.ico`
+- Copy your favicon.ico to `src/media/icons/favicon.ico`
+- Add icons to `src/media`
+- Add media files to `src/media`
+- Add custom pages and other files to `src/`
+
+You can access any file in `src/` folder using its path, e.g., `"icon": "/media/icons/my-icon.svg"`.
 
 #### Options
+
+##### General
 
 data.theme.name
 - `spasm`, `spasm-dark`, `darkvegas`, `greeny`, `neon`
 
+##### Categories
+
 data.categories[0].width
 - `full` - display category in a full screen
 - `large`, `medium`, `small`
-
-data.items[0].width
-- `block` (default) - display item in a default block
-- `full` - display item in a full line
 
 data.categories[0].page.showMainHero
 - `false` - hide main hero section
@@ -55,6 +67,12 @@ data.categories[0].frontPage
 
 data.categories[0].showPagePath
 - `false` - hide page path (`home/blog`)
+
+##### Items
+
+data.items[0].width
+- `block` (default) - display item in a default block
+- `full` - display item in a full line
 
 `data.items[0].summary` - is displayed on index, categories pages. It's also shown on the item page if description doesn't exist.
 `data.items[0].showSummaryAlways` - display summary even if description exists, e.g., on an item page.

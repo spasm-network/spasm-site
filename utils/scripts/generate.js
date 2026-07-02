@@ -3,7 +3,7 @@ const path = require('path');
 const { marked } = require('marked');
 
 // Configuration
-const DATA_FILE = path.join(__dirname, '../../src', 'data.json');
+const DATA_FILE = path.join(__dirname, '../../', 'data.json');
 const TEMPLATE_FILE = path.join(__dirname, '../../utils', 'templates/template-index.html');
 const TEMPLATE_FILE_ITEM_PAGE = path.join(__dirname, '../../utils', 'templates/template-pages-item.html');
 const OUTPUT_DIR = path.join(__dirname, '../../dist');
