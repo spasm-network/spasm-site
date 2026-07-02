@@ -125,7 +125,8 @@
     {
       "name": "podcast",
       "width": "small",
-      "frontPage": false
+      "frontPage": false,
+      "rss": "/podcast.rss"
     }
   ],
   "items": [
