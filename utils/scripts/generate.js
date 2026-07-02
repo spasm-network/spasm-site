@@ -170,9 +170,7 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
             }).join('');
         }
 
-        const itemTitleLink = item.title?.toLowerCase()
-            .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
-            .replace(/---/g, '-').replace(/--/g, '-');
+        const itemTitleLink = standardizePathName(item.title);
 
         return `
             <article class="card ${widthClass}">
@@ -212,9 +210,7 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
                 // </div>
     const categoryWidth = cat.width ? cat.width : "medium";
 
-    const categoryPageName = categoryName.toLowerCase()
-        .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
-        .replace(/---/g, '-').replace(/--/g, '-')
+    const categoryPageName = standardizePathName(categoryName);
     const homeLink = ifCategoryPage ? '<a href="/">home </a>' : ''
     let pagePathHtml = ''
     if (cat.showPagePath !== false && cat.showPagePath !== "false") {
@@ -320,11 +316,8 @@ categories.forEach(cat => {
         .replace('{{HERO_HTML}}', heroCategoryPageHtml)
         .replace('{{ALL_SECTIONS_HTML}}', sectionHtmlForCategoryPage);
 
-      const categoryFileName = String(cat.name).toLowerCase()
-          .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
-          .replace(/---/g, '-').replace(/--/g, '-');
-      const outputPath = path.join(OUTPUT_DIR, `${categoryFileName}.html`);
-      fs.writeFileSync(outputPath, categoryPageHtml);
+      const categoryOutputPath = getPath(cat.name);
+      fs.writeFileSync(categoryOutputPath, categoryPageHtml);
     }
 });
 
@@ -340,7 +333,7 @@ let finalHtml = template
     .replace('{{ALL_SECTIONS_HTML}}', allSectionsHtml);
 
 // --- Write to dist/index.html --- //
-const outputPath = path.join(OUTPUT_DIR, 'index.html');
+const outputPath = getPath('index');
 fs.writeFileSync(outputPath, finalHtml);
 
 console.log(`✅ Generated single page: dist/index.html`);
@@ -348,10 +341,15 @@ console.log(`✅ Generated single page: dist/index.html`);
 
 // --- Function to generate a single item page HTML --- //
 function generateItemPage(item) {
-    const slug = item.title?.toLowerCase()
-        .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
-        .replace(/---/g, '-').replace(/--/g, '-');
-    const outputPath = path.join(OUTPUT_DIR, `${slug}.html`);
+    let itemPagePathNavHtml = '';
+    if (item.categories && Array.isArray(item.categories) && item.categories[0]) {
+      const itemCategoryPageName = standardizePathName(item.categories[0]);
+      const homeLink = '<a href="/">home </a>';
+      if (item.showPagePath !== false && item.showPagePath !== "false") {
+        itemPagePathNavHtml = `<h2 class="section-title section-title-item-page-path-nav">${homeLink}/ <a href="${itemCategoryPageName}">${itemCategoryPageName}</a></h2>`;
+      }
+    }
+
 
     // --- Header Components ---
     const logoHtml = item.logo ? `<img src="../${item.logo}" class="item-logo" alt="${item.title}">` : '';
@@ -542,14 +540,15 @@ function generateItemPage(item) {
 
     // --- Assemble HTML ---
     let itemPageHtml = templateItemPage
-        .replace('{{ITEM_NAME}}', item.title)
-        .replace('{{ITEM_NAME}}', item.title)
+        .replace('{{ITEM_NAME}}', item.title) // meta
+        .replace('{{ITEM_NAME}}', item.title) // page
         .replace('{{THEME}}', themeHtml)
         .replace('{{SITE_TITLE}}', data.meta.title)
         .replace('{{LOGO_TEXT}}', data.navbar.brand)
         .replace('{{NAV_LINKS}}', navLinksHtml)
         .replace('{{FOOTER_HTML}}', footerLinksHtml)
         .replace('{{ANNOUNCEMENTS_HTML}}', announcementsHtml)
+        .replace('{{ITEM_PAGE_PATH_NAV}}', itemPagePathNavHtml)
         .replace('{{ITEM_LOGO}}', logoHtml)
         .replace('{{ITEM_HEADER_META}}', headerMetaHtml)
         .replace('{{ITEM_ACTION_SECTION_HTML}}', itemActionSectionHtml)
@@ -560,8 +559,11 @@ function generateItemPage(item) {
         .replace('{{ITEM_EXTRA_HTML}}', extraSectionsHtml);
 
     // Write file
+    const outputPath = getPath(item.title);
     fs.writeFileSync(outputPath, itemPageHtml);
-    console.log(`✅ Generated: dist/${slug}.html`);
+
+    const itemPathName = standardizePathName(item.title);
+    console.log(`✅ Generated: dist/${itemPathName}.html`);
 }
 
 // --- Execute Generation for item pages --- //
@@ -657,4 +659,20 @@ function escapeAttr(s) {
     .replace(/"/g, "&quot;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
+}
+
+function standardizePathName(val) {
+  const str = String(val);
+  if (!str) { return ''; }
+  if (typeof(str) !== "string") { return ''; }
+  return str.toLowerCase()
+    .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '-')
+    .replace(/---/g, '-').replace(/--/g, '-')
+}
+
+function getPath(val) {
+  const pathName = standardizePathName(val);
+  if (!pathName) { return ''; }
+  if (typeof(pathName) !== "string") { return ''; }
+  return path.join(OUTPUT_DIR, `${pathName}.html`);
 }

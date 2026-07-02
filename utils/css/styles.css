@@ -5,10 +5,10 @@
   --colorPrimary-light: #f420af;
   --colorPrimary-dark: #f420af;
 
-  --colorSecondary-light: #101010;
+  --colorSecondary-light: #303030;
   --colorSecondary-dark: #a8a8a8;
 
-  --colorThirdly-light: #202020;
+  --colorThirdly-light: #606060;
   --colorThirdly-dark: #777777;
 
   --colorHover-light: #243746;
@@ -318,7 +318,8 @@ body {
 
 /* --- HERO SECTION STYLES --- */
 .hero-section {
-    margin-top: 25px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     padding: 5px 10px 0px 10px;
     text-align: center;
 }
@@ -369,19 +370,26 @@ body {
     }
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px 20px; }
 
-.section-block { margin-bottom: 60px; }
+.section-block { margin-bottom: 20px; }
 .section-title { 
-    font-size: 1.2rem; 
-    margin-bottom: 30px; 
-    color: var(--colorThirdly);
-    display: inline-block; 
-    padding-bottom: 5px; 
+  padding-top: 40px; /* for better anchoring e.g., #git */ 
+  font-size: 1.1rem; 
+  margin-bottom: 10px; 
+  color: var(--colorThirdly);
+  display: inline-block; 
+  padding-bottom: 5px; 
+  font-weight: normal;
+}
+.section-title-item-page-path-nav {
+  padding-top: 5px;
+  font-size: 0.9rem; 
 }
 .section-title a { 
   color: inherit;
   text-decoration: none;
+  font-weight: normal;
 }
 
 .section-title a:hover { 
