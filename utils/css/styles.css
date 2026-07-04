@@ -375,12 +375,15 @@ body {
 .section-block { margin-bottom: 20px; }
 .section-title { 
   padding-top: 40px; /* for better anchoring e.g., #git */ 
-  font-size: 1.1rem; 
+  font-size: 1.3rem; 
   margin-bottom: 10px; 
   color: var(--colorThirdly);
   display: inline-block; 
   padding-bottom: 5px; 
   font-weight: normal;
+}
+.section-title-category-page-path-nav {
+  font-size: 1.1rem; 
 }
 .section-title-item-page-path-nav {
   padding-top: 5px;
