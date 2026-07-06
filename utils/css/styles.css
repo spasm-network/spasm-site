@@ -738,8 +738,8 @@ body {
     font-size: 1.05rem;
     line-height: 1.6;
 }
-.item-description p { margin-bottom: 10px; }
-.item-summary p { margin-bottom: 15px; }
+/* .item-description p { margin-bottom: 10px; } */
+/* .item-summary p { margin-bottom: 15px; } */
 .item-summary h1, .item-summary h2, .item-summary h3 {
     color: var(--colorBase);
     margin-top: 20px;
@@ -879,7 +879,7 @@ body {
   color: var(--colorSecondary);
 }
 .item-summary p, .item-extra-text p, .item-description p, .description p {
-  margin-bottom: 0.5em;
+  margin-bottom: 1.2rem;
 }
 .item-summary p:last-child, .item-extra-text p:last-child, .item-description p:last-child, .description p:last-child {
   margin-bottom: 0;
@@ -915,6 +915,7 @@ body {
 .summary h4, .summary h5, .summary h6, 
 .item-summary h1, .item-summary h2, .item-summary h3,
 .item-summary h4, .item-summary h5, .item-summary h6 {
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 .description pre, .item-description pre, .summary pre, .item-summary pre, .item-extra-text pre {
