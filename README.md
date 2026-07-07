@@ -46,6 +46,10 @@ npm run dev
 
 You can access any file in `src/` folder using its path, e.g., `"icon": "/media/icons/my-icon.svg"`.
 
+### Markdown
+
+You can place markdown file files in `docs/` folder and reference them in items with `"descriptionFile": "hello-world.md"`.
+
 #### Options
 
 ##### General

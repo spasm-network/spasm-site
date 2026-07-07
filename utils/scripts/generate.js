@@ -1,4 +1,5 @@
 const fs = require('fs');
+const fsPromise = require('fs/promises');
 const path = require('path');
 const { marked } = require('marked');
 
@@ -7,6 +8,7 @@ const DATA_FILE = path.join(__dirname, '../../', 'data.json');
 const TEMPLATE_FILE = path.join(__dirname, '../../utils', 'templates/template-index.html');
 const TEMPLATE_FILE_ITEM_PAGE = path.join(__dirname, '../../utils', 'templates/template-pages-item.html');
 const OUTPUT_DIR = path.join(__dirname, '../../dist');
+const mdDir = path.join(__dirname, '../../docs');
 
 // Read Data and Template
 const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
@@ -344,7 +346,7 @@ console.log(`✅ Generated single page: dist/index.html`);
 // console.log(`   Sections included: ${categories.join(', ')}`);
 
 // --- Function to generate a single item page HTML --- //
-function generateItemPage(item) {
+async function generateItemPage(item) {
     let itemPagePathNavHtml = '';
     if (item.categories && Array.isArray(item.categories) && item.categories[0]) {
       const itemCategoryPageName = standardizePathName(item.categories[0]);
@@ -471,9 +473,19 @@ function generateItemPage(item) {
     let descriptionHtml = '';
     if (Array.isArray(item.description)) {
         descriptionHtml = item.description.map(line => `<p>${line}</p>`).join('');
-    } else if (typeof item.description === 'string') {
+    } else if (item.description && typeof item.description === 'string') {
         // descriptionHtml = `<p>${item.description}</p>`;
         descriptionHtml = item.description ? marked.parse(item.description) : '';
+    } else if (item.descriptionFile && typeof item.descriptionFile === 'string') {
+      const file = item.descriptionFile;
+      if (file.endsWith('.md')) {
+        const mdPath = path.join(mdDir, file);
+        const mdContent = await fsPromise.readFile(mdPath, 'utf8');
+        const mdContentHtml = marked.parse(mdContent);
+        if (mdContentHtml && typeof mdContentHtml === "string") {
+          descriptionHtml = mdContentHtml;
+        }
+      }
     } else {
         descriptionHtml = '';
     }
