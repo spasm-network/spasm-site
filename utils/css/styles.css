@@ -978,3 +978,19 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+body .img-theme-dark {
+  display: block;
+}
+
+body:has(#theme-switch:checked) .img-theme-dark {
+  display: none;
+}
+
+body .img-theme-light {
+  display: none;
+}
+
+body:has(#theme-switch:checked) .img-theme-light {
+  display: block;
+}
