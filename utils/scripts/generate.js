@@ -172,10 +172,12 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
             }).join('');
         }
 
+        const cardColor = item.color ? `card-${item.color}` : ""
+
         const itemTitleLink = standardizePathName(item.title);
 
         return `
-            <article class="card ${widthClass}">
+            <article class="card ${cardColor} ${widthClass}">
                 <div class="card-header">
                     <a href="/${itemTitleLink}">
                         <div class="item-title">
