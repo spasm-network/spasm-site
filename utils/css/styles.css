@@ -426,6 +426,16 @@ body {
 }
 .card:hover { border-color: #555; }
 
+.card-red { border-color: var(--colorRed); }
+.card-green { border-color: var(--colorGreen); }
+.card-blue { border-color: var(--colorBlue); }
+.card-orange { border-color: var(--colorOrange); }
+.card-brown { border-color: var(--colorBrown); }
+
+.card-red:hover, .card-green:hover, .card-blue:hover, .card-orange:hover, .card-brown:hover {
+  border-color: var(--colorPrimary);
+}
+
 /* Header: Title (Left) & Labels (Right) */
 .card-header { 
     display: flex; 
