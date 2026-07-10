@@ -503,7 +503,7 @@ async function generateItemPage(item) {
     // Description
     let descriptionHtml = '';
     if (Array.isArray(item.description)) {
-        descriptionHtml = item.description.map(line => `<p>${line}</p>`).join('');
+        descriptionHtml = item.description.map(line => `<p>${marked.parse(line)}</p>`).join('');
     } else if (item.description && typeof item.description === 'string') {
         // descriptionHtml = `<p>${item.description}</p>`;
         descriptionHtml = item.description ? marked.parse(item.description) : '';
