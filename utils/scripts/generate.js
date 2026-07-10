@@ -197,7 +197,7 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
                     ${summaryHtml}
                 </div>
                 <div class="card-footer">
-                    <span></span>
+                    <span>${item.footerLink ? `<a href="${item.footerLink}" class="visit-link" target="_blank" rel="noopener noreferrer">Visit &rarr;</a>` : ''}</span>
                     ${footerIconsHtml ? `<div class="item-block-footer-icons">${footerIconsHtml}</div>` : ''}
                 </div>
             </article>
