@@ -94,6 +94,14 @@
       }
     ]
   },
+  "lists": [
+    {
+      "name": "index",
+      "categories": [
+        "apps", "tribes"
+      ]
+    }
+  ],
   "categories": [
     {
       "name": "new",

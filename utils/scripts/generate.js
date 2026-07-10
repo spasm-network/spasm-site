@@ -288,19 +288,19 @@ function groupItemsByCategories(input) {
   return [...categoryMap.values()];
 }
 
-let allSectionsHtml = '';
+// let allSectionsHtmlForIndex = '';
 // const categories = data.categories;
-const categories = groupItemsByCategories(data);
+const allGlobalCategories = groupItemsByCategories(data);
 
-categories.forEach(cat => {
+allGlobalCategories.forEach(cat => {
     // Add a category to an index page
-    const sectionHtmlForIndex = generateCategorySectionHTML(cat);
-    if (
-      !("frontPage" in cat) || cat.frontPage === true ||
-      cat.frontPage === "true" || cat.frontPage === "show"
-    ) {
-      allSectionsHtml += sectionHtmlForIndex;
-    }
+    // const sectionHtmlForIndex = generateCategorySectionHTML(cat);
+    // if (
+    //   !("frontPage" in cat) || cat.frontPage === true ||
+    //   cat.frontPage === "true" || cat.frontPage === "show"
+    // ) {
+    //   allSectionsHtmlForIndex += sectionHtmlForIndex;
+    // }
 
     // Generate a dedicated page for a category
     const sectionHtmlForCategoryPage = generateCategorySectionHTML(cat, true);
@@ -329,23 +329,52 @@ categories.forEach(cat => {
     }
 });
 
-// --- Final Assembly for index.html --- //
-let finalHtml = template
-    .replace('{{SITE_TITLE}}', data.meta.title)
-    .replace('{{THEME}}', themeHtml)
-    .replace('{{LOGO_TEXT}}', data.navbar.brand)
-    .replace('{{NAV_LINKS}}', navLinksHtml)
-    .replace('{{ANNOUNCEMENTS_HTML}}', announcementsHtml)
-    .replace('{{FOOTER_HTML}}', footerLinksHtml) 
-    .replace('{{HERO_HTML}}', heroHtml)
-    .replace('{{ALL_SECTIONS_HTML}}', allSectionsHtml);
+function generatePageList(list) {
+  console.log("list:", list)
+  const pagePath = list.path || list.name || null
+  console.log("pagePath:", pagePath)
+  if (!pagePath || typeof(pagePath) !== 'string') { return }
 
-// --- Write to dist/index.html --- //
-const outputPath = getPath('index');
-fs.writeFileSync(outputPath, finalHtml);
+  // Add a global category if it was selected
+  const selectedListCategories = []
+  if (list.categories && Array.isArray(list.categories)) {
+    allGlobalCategories.forEach(cat => {
+      if (list.categories.includes(String(cat.name).toLowerCase())) {
+        selectedListCategories.push(cat)
+      }
+    })
+  }
 
-console.log(`✅ Generated single page: dist/index.html`);
-// console.log(`   Sections included: ${categories.join(', ')}`);
+  let allSectionsHtmlForIndex = '';
+  selectedListCategories.forEach(cat => {
+    const sectionHtmlForIndex = generateCategorySectionHTML(cat);
+    allSectionsHtmlForIndex += sectionHtmlForIndex;
+  })
+
+  // --- Final Assembly for index.html --- //
+  const finalHtmlForIndex = template
+      .replace('{{SITE_TITLE}}', data.meta.title)
+      .replace('{{THEME}}', themeHtml)
+      .replace('{{LOGO_TEXT}}', data.navbar.brand)
+      .replace('{{NAV_LINKS}}', navLinksHtml)
+      .replace('{{ANNOUNCEMENTS_HTML}}', announcementsHtml)
+      .replace('{{FOOTER_HTML}}', footerLinksHtml) 
+      .replace('{{HERO_HTML}}', heroHtml)
+      .replace('{{ALL_SECTIONS_HTML}}', allSectionsHtmlForIndex);
+
+  // --- Write to dist/index.html --- //
+  const outputPathForIndex = getPath(pagePath);
+  fs.writeFileSync(outputPathForIndex, finalHtmlForIndex);
+
+  console.log(`✅ Generated single page: dist/index.html`);
+  // console.log(`   Sections included: ${categories.join(', ')}`);
+}
+
+// --- Generate Index Page --- //
+data.lists?.forEach(list => {
+  generatePageList(list);
+  // generatePageList('demo');
+})
 
 // --- Function to generate a single item page HTML --- //
 async function generateItemPage(item) {
