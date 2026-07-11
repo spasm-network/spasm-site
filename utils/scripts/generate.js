@@ -176,6 +176,17 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
 
         const itemTitleLink = standardizePathName(item.title);
 
+        let cardFooterHtml = ""
+        
+        if (item?.footerLink || footerIconsHtml) {
+          cardFooterHtml = `
+                <div class="card-footer">
+                    <span>${item.footerLink ? `<a href="${item.footerLink}" class="visit-link" target="_blank" rel="noopener noreferrer">Visit &rarr;</a>` : ''}</span>
+                    ${footerIconsHtml ? `<div class="item-block-footer-icons">${footerIconsHtml}</div>` : ''}
+                </div>
+          `;
+        }
+
         return `
             <article class="card ${cardColor} ${widthClass}">
                 <div class="card-header">
@@ -193,13 +204,8 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
                 <div class="tags">
                     ${tagsHtml}
                 </div>
-                <div class="description">
-                    ${summaryHtml}
-                </div>
-                <div class="card-footer">
-                    <span>${item.footerLink ? `<a href="${item.footerLink}" class="visit-link" target="_blank" rel="noopener noreferrer">Visit &rarr;</a>` : ''}</span>
-                    ${footerIconsHtml ? `<div class="item-block-footer-icons">${footerIconsHtml}</div>` : ''}
-                </div>
+                ${summaryHtml ? `<div class="description">${summaryHtml}</div>` : '' }
+                ${cardFooterHtml}
             </article>
         `;
     }).join('\n');
