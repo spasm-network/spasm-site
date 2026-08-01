@@ -648,6 +648,9 @@ body {
     display: inline-block;
     border-radius: 4px;
 }
+.announcement-box a {
+  color: inherit; text-decoration: none;
+}
 /* .announcement-box:hover { background: rgba(255, 102, 0, 0.1); } */
 .announcement-box:hover { background: color-mix(in srgb, var(--colorOrange) 10%, transparent); }
 .announcement-warning { border-color: var(--colorWarning); color: var(--colorWarning); }
@@ -660,6 +663,12 @@ body {
 .announcement-blue:hover { background: color-mix(in srgb, var(--colorBlue) 10%, transparent); }
 .announcement-orange { border-color: var(--colorOrange); color: var(--colorOrange); }
 .announcement-orange:hover { background: color-mix(in srgb, var(--colorOrange) 10%, transparent); }
+
+.announcement-list-link-warning { color: var(--colorWarning); }
+.announcement-list-link-green { color: var(--colorGreen); }
+.announcement-list-link-red { color: var(--colorRed); }
+.announcement-list-link-blue { color: var(--colorBlue); }
+.announcement-list-link-orange { color: var(--colorOrange); }
 
 /* --- ITEM PAGE SPECIFIC STYLES --- */
 .item-page {

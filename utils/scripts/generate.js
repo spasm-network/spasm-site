@@ -87,16 +87,46 @@ if (data.footer && Array.isArray(data.footer.footerLinks)) {
 // --- Generate Announcements HTML --- //
 let announcementsHtml = '';
 if (data.announcements && Array.isArray(data.announcements)) {
-    announcementsHtml = '<div class="announcements">';
-    data.announcements.forEach(ann => {
-        const colorClass = `announcement-${ann.color || 'orange'}`;
-        if (ann.link) {
-            announcementsHtml += `<a href="${ann.link}" class="announcement-box ${colorClass}" ${ann.type === 'external' ? 'target="_blank"' : ''}>${ann.text}</a>`;
-        } else {
-            announcementsHtml += `<div class="announcement-box ${colorClass}">${ann.text}</div>`;
+  announcementsHtml = '<div class="announcements">';
+  data.announcements.forEach(ann => {
+    if (!ann.hide) {
+      // Announcement list with links (News: one, two, three)
+      if (ann.format === "list") {
+          const colorClass = `announcement-${ann.color || 'orange'}`;
+          let annLinksHtml = "";
+          if (ann.links && Array.isArray(ann.links)) {
+            let annLinksHtmlArray = [];
+            ann.links.forEach(item => {
+              const linkColorClass = item.color ? `announcement-list-link-${item.color}` : '';
+              const itemTitleHtml = item.title ? `<span>${marked.parseInline(item.title)}</span>` : '';
+              const itemTextHtml = item.text ? `<span> ${marked.parseInline(item.text)}</span>` : '';
+              const linkHtml = `<span> <span class="${linkColorClass}"><a href="${item.link.toLowerCase()}" ${item.type !== 'internal' ? 'target="_blank"' : ''}>${itemTitleHtml}</a></span>${itemTextHtml}</span>`;
+              annLinksHtmlArray.push(linkHtml);
+            })
+            annLinksHtml = annLinksHtmlArray.join(",");
+          }
+        if (annLinksHtml && typeof(annLinksHtml) === "string") {
+          announcementsHtml += `<div class="announcement-box ${colorClass}">${ann.text ? ann.text : '' }${annLinksHtml}</div>`;
         }
-    });
-    announcementsHtml += '</div>';
+      // Regular announcement
+      } else if (!ann.format || ann.format !== "list") {
+        const colorClass = `announcement-${ann.color || 'orange'}`;
+        let annTextHtml = '';
+        if (ann.text) {
+          const annTextMarked = marked.parse(ann.text);
+          if (annTextMarked && typeof(annTextMarked) === "string") {
+            annTextHtml = annTextMarked;
+          }
+        }
+        if (ann.link) {
+            announcementsHtml += `<div class="announcement-box ${colorClass}"><a href="${ann.link}" ${ann.type === 'external' ? 'target="_blank"' : ''}>${annTextHtml}</a></div>`;
+        } else {
+            announcementsHtml += `<div class="announcement-box ${colorClass}">${annTextHtml}</div>`;
+        }
+      }
+    }
+  });
+  announcementsHtml += '</div>';
 }
 
 // --- Function to generate a single section HTML --- //

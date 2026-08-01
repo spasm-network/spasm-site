@@ -1,6 +1,25 @@
 {
   "announcements": [
     {
+      "format": "list",
+      "text": "List of links:",
+      "links": [
+        {
+          "title": "**Spasm**",
+          "color": "red",
+          "type": "external",
+          "link": "https://spasm.network"
+        },
+        {
+          "title": "**Learn**",
+          "text": "- everything about Spasm",
+          "color": "green",
+          "type": "external",
+          "link": "https://spasm.network/learn"
+        }
+      ]
+    },
+    {
       "text": "A very long default announcement without any colors because it's important to make sure that eveything works fine even with long strings."
     },
     {
@@ -9,7 +28,7 @@
     },
     {
       "color": "red",
-      "text": "Important: update your app!"
+      "text": "Important: [**update**](https://spasm.network) your app!"
     },
     {
       "color": "orange",
