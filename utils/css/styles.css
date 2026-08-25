@@ -923,6 +923,11 @@ body {
   width: 100%;
 }
 
+.item-description img {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .item-description hr, .description hr, .item-summary hr, .summary hr {
   margin-top: 15px;
   margin-bottom: 15px;

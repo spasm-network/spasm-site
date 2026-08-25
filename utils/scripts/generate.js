@@ -29,6 +29,30 @@ if (data.hero) {
     const header = data.hero['header'] || '';
     const subHeader = data.hero['sub-header'] || '';
 
+    // Hero Media
+    let mediaHtml = '';
+    let mediaHtmlArray = [];
+    if (Array.isArray(data.hero.media)) {
+      data.hero.media.forEach(mediaItem => {
+        if (mediaItem.link && typeof(mediaItem.link) === "string") {
+          const mediaItemHtml = wrapLinkInMediaHtmlTags(mediaItem.link);
+          if (mediaItemHtml) {
+            mediaHtmlArray.push(`
+              <div class="media-file">
+                ${mediaItemHtml}
+              </div>
+            `)
+          };
+        }
+      });
+      mediaHtml = mediaHtmlArray.join('');
+    }
+    const heroMediaDivHtml = mediaHtml ? `
+            <div class="item-media">
+              ${mediaHtml}
+            </div>
+    ` : ''
+
     if (preHeader || header || subHeader) {
         heroHtml = `
         <section class="hero-section">
@@ -36,6 +60,7 @@ if (data.hero) {
                 ${preHeader ? `<div class="hero-pre-header">${preHeader}</div>` : ''}
                 ${header ? `<h1 class="hero-header">${header}</h1>` : ''}
                 ${subHeader ? `<p class="hero-sub-header">${subHeader}</p>` : ''}
+                ${heroMediaDivHtml ? heroMediaDivHtml : ''}
             </div>
         </section>
         `;
