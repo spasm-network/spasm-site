@@ -906,6 +906,7 @@ body {
 }
 .item-summary ul, .item-extra-text ul, .item-description ul, .description ul {
     margin: 0;
+    margin-bottom: 15px;
     padding-left: 15px;
     list-style-type: disc;
 }
