@@ -1009,6 +1009,14 @@ body {
   margin-right: auto;
 }
 
+.text-align-center, .text-center { text-align: center; }
+.text-align-left, .text-left { text-align: left; }
+.text-align-right, .text-right { text-align: right; }
+.text-align-start, .text-start { text-align: start; }
+.text-align-end, .text-end { text-align: end; }
+.text-align-inherit, .text-inherit { text-align: inherit; }
+.text-align-normal, .text-normal { text-align: inherit; }
+
 body .img-theme-dark {
   display: block;
 }

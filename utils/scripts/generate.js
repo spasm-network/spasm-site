@@ -115,6 +115,7 @@ if (data.announcements && Array.isArray(data.announcements)) {
   announcementsHtml = '<div class="announcements">';
   data.announcements.forEach(ann => {
     if (!ann.hide) {
+      const textAlign = `text-align-${ann.align || 'inherit'}`;
       // Announcement list with links (News: one, two, three)
       if (ann.format === "list") {
           const colorClass = `announcement-${ann.color || 'orange'}`;
@@ -131,7 +132,7 @@ if (data.announcements && Array.isArray(data.announcements)) {
             annLinksHtml = annLinksHtmlArray.join(",");
           }
         if (annLinksHtml && typeof(annLinksHtml) === "string") {
-          announcementsHtml += `<div class="announcement-box ${colorClass}">${ann.text ? ann.text : '' }${annLinksHtml}</div>`;
+          announcementsHtml += `<div class="announcement-box ${textAlign} ${colorClass}">${ann.text ? ann.text : '' }${annLinksHtml}</div>`;
         }
       // Regular announcement
       } else if (!ann.format || ann.format !== "list") {
@@ -144,7 +145,7 @@ if (data.announcements && Array.isArray(data.announcements)) {
           }
         }
         if (ann.link) {
-            announcementsHtml += `<div class="announcement-box ${colorClass}"><a href="${ann.link}" ${ann.type === 'external' ? 'target="_blank"' : ''}>${annTextHtml}</a></div>`;
+            announcementsHtml += `<div class="announcement-box ${textAlign} ${colorClass}"><a href="${ann.link}" ${ann.type === 'external' ? 'target="_blank"' : ''}>${annTextHtml}</a></div>`;
         } else {
             announcementsHtml += `<div class="announcement-box ${colorClass}">${annTextHtml}</div>`;
         }
