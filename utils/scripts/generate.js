@@ -230,7 +230,8 @@ function generateCategorySectionHTML(cat, ifCategoryPage) {
 
         const cardColor = item.color ? `card-${item.color}` : ""
 
-        const itemTitleLink = standardizePathName(item.title);
+        const pagePath = item.path || item.title || ""
+        const itemTitleLink = standardizePathName(pagePath);
 
         let cardFooterHtml = ""
         
