@@ -392,9 +392,7 @@ allGlobalCategories.forEach(cat => {
 });
 
 function generatePageList(list) {
-  console.log("list:", list)
   const pagePath = list.path || list.name || null
-  console.log("pagePath:", pagePath)
   if (!pagePath || typeof(pagePath) !== 'string') { return }
 
   // Add a global category if it was selected
@@ -414,7 +412,7 @@ function generatePageList(list) {
   })
 
   // --- Final Assembly for index.html --- //
-  const finalHtmlForIndex = template
+  const finalHtmlForList = template
       .replace('{{SITE_TITLE}}', data.meta.title)
       .replace('{{THEME}}', themeHtml)
       .replace('{{LOGO_TEXT}}', data.navbar.brand)
@@ -425,10 +423,10 @@ function generatePageList(list) {
       .replace('{{ALL_SECTIONS_HTML}}', allSectionsHtmlForIndex);
 
   // --- Write to dist/index.html --- //
-  const outputPathForIndex = getPath(pagePath);
-  fs.writeFileSync(outputPathForIndex, finalHtmlForIndex);
+  const outputPathForList = getPath(pagePath);
+  fs.writeFileSync(outputPathForList, finalHtmlForList);
 
-  console.log(`✅ Generated single page: dist/index.html`);
+  console.log(`✅ Generated list: dist/${pagePath}.html`);
   // console.log(`   Sections included: ${categories.join(', ')}`);
 }
 
@@ -668,11 +666,12 @@ async function generateItemPage(item) {
         .replace('{{ITEM_EXTRA_HTML}}', extraSectionsHtml);
 
     // Write file
-    const outputPath = getPath(item.title);
+    const pagePath = item.path || item.title || null
+    const outputPath = getPath(pagePath);
     fs.writeFileSync(outputPath, itemPageHtml);
 
-    const itemPathName = standardizePathName(item.title);
-    console.log(`✅ Generated: dist/${itemPathName}.html`);
+    const itemPathName = standardizePathName(pagePath);
+    console.log(`✅ Generated item: dist/${itemPathName}.html`);
 }
 
 // --- Execute Generation for item pages --- //
