@@ -573,7 +573,7 @@ body {
 .item-block-footer-icon {
     width: 16px;
     height: 16px;
-    border-radius: 50%;
+    border-radius: 10%;
     display: inline-block;
 }
 
